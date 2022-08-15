@@ -47,8 +47,8 @@ public abstract class AbstractHomeFragment extends BaseLazyFragment {
     public boolean useCacheConfig = false;
 
     private static ManagedHomeViewStyle[] managedHomeFragments = new ManagedHomeViewStyle[] {
-            new ManagedHomeViewStyle("AssembledFragment", "集合式"),
-            new ManagedHomeViewStyle("CatFragment", "老猫式")
+            new ManagedHomeViewStyle("CatFragment", "老猫式"),
+            new ManagedHomeViewStyle("AssembledFragment", "集合式")
     };
 
     public static class ManagedHomeViewStyle {
