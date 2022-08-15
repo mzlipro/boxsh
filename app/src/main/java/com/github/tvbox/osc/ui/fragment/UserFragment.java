@@ -11,7 +11,7 @@ import com.github.tvbox.osc.R;
 import com.github.tvbox.osc.base.BaseLazyFragment;
 import com.github.tvbox.osc.event.ServerEvent;
 import com.github.tvbox.osc.ui.activity.CollectActivity;
-//import com.github.tvbox.osc.ui.activity.HistoryActivity;
+import com.github.tvbox.osc.ui.activity.HistoryActivity;
 import com.github.tvbox.osc.ui.activity.DriveActivity;
 import com.github.tvbox.osc.ui.activity.LivePlayActivity;
 import com.github.tvbox.osc.ui.activity.PushActivity;
@@ -35,7 +35,7 @@ public class UserFragment extends BaseLazyFragment implements View.OnClickListen
     private LinearLayout tvLive;
     private LinearLayout tvSearch;
     private LinearLayout tvSetting;
-    //private LinearLayout tvHistory;
+    private LinearLayout tvHistory;
     private LinearLayout tvPush;
     private LinearLayout tvFavorite;
     private LinearLayout tvDouban;
@@ -70,7 +70,7 @@ public class UserFragment extends BaseLazyFragment implements View.OnClickListen
         tvLive = findViewById(R.id.tvLive);
         tvSearch = findViewById(R.id.tvSearch);
         tvSetting = findViewById(R.id.tvSetting);
-        //tvHistory = findViewById(R.id.tvHistory);
+        tvHistory = findViewById(R.id.tvHistory);
         tvPush = findViewById(R.id.tvPush);
         tvFavorite = findViewById(R.id.tvFavorite);
         tvDouban = findViewById(R.id.tvDouban);
@@ -79,7 +79,7 @@ public class UserFragment extends BaseLazyFragment implements View.OnClickListen
         tvLive.setOnClickListener(this);
         tvSearch.setOnClickListener(this);
         tvSetting.setOnClickListener(this);
-        //tvHistory.setOnClickListener(this);
+        tvHistory.setOnClickListener(this);
         tvPush.setOnClickListener(this);
         tvFavorite.setOnClickListener(this);
         tvDouban.setOnClickListener(this);
@@ -129,6 +129,8 @@ public class UserFragment extends BaseLazyFragment implements View.OnClickListen
             jumpActivity(SearchActivity.class);
         } else if (v.getId() == R.id.tvSetting) {
             jumpActivity(SettingActivity.class);
+        } else if (v.getId() == R.id.tvHistory) {
+            jumpActivity(HistoryActivity.class);
         } else if (v.getId() == R.id.tvPush) {
             jumpActivity(PushActivity.class);
         } else if (v.getId() == R.id.tvFavorite) {
