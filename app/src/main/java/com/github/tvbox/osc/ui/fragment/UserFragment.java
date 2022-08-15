@@ -88,7 +88,7 @@ public class UserFragment extends BaseLazyFragment implements View.OnClickListen
         tvLive.setOnFocusChangeListener(focusChangeListener);
         tvSearch.setOnFocusChangeListener(focusChangeListener);
         tvSetting.setOnFocusChangeListener(focusChangeListener);
-        //tvHistory.setOnFocusChangeListener(focusChangeListener);
+        tvHistory.setOnFocusChangeListener(focusChangeListener);
         tvPush.setOnFocusChangeListener(focusChangeListener);
         tvFavorite.setOnFocusChangeListener(focusChangeListener);
         tvDouban.setOnFocusChangeListener(focusChangeListener);
