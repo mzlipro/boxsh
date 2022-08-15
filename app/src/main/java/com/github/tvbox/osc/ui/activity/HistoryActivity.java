@@ -30,14 +30,11 @@ import java.util.List;
  * @description:
  */
 public class HistoryActivity extends BaseActivity {
-    //private TextView tvDel;
+    private TextView tvDel;
     private TextView tvDelTip;
     private TvRecyclerView mGridView;
     private HistoryAdapter historyAdapter;
     private boolean delMode = false;
-
-    private static final String defaultDelMsg = "长按任意影视项激活删除模式";
-    private static final String enabledDelMsg = "点击影视项删除该纪录，返回键退出删除模式";
 
     @Override
     protected int getLayoutResID() {
@@ -52,8 +49,8 @@ public class HistoryActivity extends BaseActivity {
 
     private void toggleDelMode() {
         delMode = !delMode;
-        tvDelTip.setText(delMode ? enabledDelMsg : defaultDelMsg);
-        tvDelTip.setTextColor(delMode ? getResources().getColor(R.color.color_FF0057) : Color.WHITE);
+        tvDelTip.setVisibility(delMode ? View.VISIBLE : View.GONE);
+        tvDel.setTextColor(delMode ? getResources().getColor(R.color.color_FF0057) : Color.WHITE);
     }
 
     private void initView() {
@@ -65,7 +62,23 @@ public class HistoryActivity extends BaseActivity {
         mGridView.setLayoutManager(new V7GridLayoutManager(this.mContext, shouldMoreColumns() ? 5 : 6));
         historyAdapter = new HistoryAdapter();
         mGridView.setAdapter(historyAdapter);
-        //tvDel.setOnClickListener(new View.OnClickListener() {
+        tvDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleDelMode();
+            }
+        });
+        mGridView.setOnInBorderKeyEventListener(new TvRecyclerView.OnInBorderKeyEventListener() {
+            @Override
+            public boolean onInBorderKeyEvent(int direction, View focused) {
+                if (direction == View.FOCUS_UP) {
+                    tvDel.setFocusable(true);
+                    tvDel.requestFocus();
+                }
+                return false;
+            }
+        });
+        mGridView.setOnItemListener(new TvRecyclerView.OnItemListener() {
             @Override
             public void onItemPreSelected(TvRecyclerView parent, View itemView, int position) {
                 itemView.animate().scaleX(1.0f).scaleY(1.0f).setDuration(300).setInterpolator(new BounceInterpolator()).start();
@@ -79,16 +92,6 @@ public class HistoryActivity extends BaseActivity {
             @Override
             public void onItemClick(TvRecyclerView parent, View itemView, int position) {
 
-            }
-        });
-        historyAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
-                if(!delMode) {
-                    toggleDelMode();
-                    return true;
-                }
-                return false;
             }
         });
         historyAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -128,17 +131,10 @@ public class HistoryActivity extends BaseActivity {
                         historyAdapter.remove(position);
                         RoomDataManger.deleteVodRecord(vodInfo.sourceKey, vodInfo);
                     } else {
-                        if (ApiConfig.get().getSource(vodInfo.sourceKey) != null) {
-                            Bundle bundle = new Bundle();
-                            bundle.putString("id", vodInfo.vodId);
-                            bundle.putString("sourceKey", vodInfo.sourceKey);
-                            jumpActivity(DetailActivity.class, bundle);
-                        } else {
-                            Intent newIntent = new Intent(mContext, SearchActivity.class);
-                            newIntent.putExtra("title", vodInfo.name);
-                            newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(newIntent);
-                        }
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", vodInfo.id);
+                        bundle.putString("sourceKey", vodInfo.sourceKey);
+                        jumpActivity(DetailActivity.class, bundle);
                     }
                 }
             }
