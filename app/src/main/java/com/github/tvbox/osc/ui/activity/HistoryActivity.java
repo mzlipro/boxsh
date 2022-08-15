@@ -30,11 +30,14 @@ import java.util.List;
  * @description:
  */
 public class HistoryActivity extends BaseActivity {
-    private TextView tvDel;
+    //private TextView tvDel;
     private TextView tvDelTip;
     private TvRecyclerView mGridView;
     private HistoryAdapter historyAdapter;
     private boolean delMode = false;
+
+    private static final String defaultDelMsg = "长按任意影视项激活删除模式";
+    private static final String enabledDelMsg = "点击影视项删除该纪录，返回键退出删除模式";
 
     @Override
     protected int getLayoutResID() {
@@ -49,8 +52,8 @@ public class HistoryActivity extends BaseActivity {
 
     private void toggleDelMode() {
         delMode = !delMode;
-        tvDelTip.setVisibility(delMode ? View.VISIBLE : View.GONE);
-        tvDel.setTextColor(delMode ? getResources().getColor(R.color.color_FF0057) : Color.WHITE);
+        tvDelTip.setText(delMode ? enabledDelMsg : defaultDelMsg);
+        tvDelTip.setTextColor(delMode ? getResources().getColor(R.color.color_FF0057) : Color.WHITE);
     }
 
     private void initView() {
@@ -62,23 +65,7 @@ public class HistoryActivity extends BaseActivity {
         mGridView.setLayoutManager(new V7GridLayoutManager(this.mContext, shouldMoreColumns() ? 5 : 6));
         historyAdapter = new HistoryAdapter();
         mGridView.setAdapter(historyAdapter);
-        tvDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleDelMode();
-            }
-        });
-        mGridView.setOnInBorderKeyEventListener(new TvRecyclerView.OnInBorderKeyEventListener() {
-            @Override
-            public boolean onInBorderKeyEvent(int direction, View focused) {
-                if (direction == View.FOCUS_UP) {
-                    tvDel.setFocusable(true);
-                    tvDel.requestFocus();
-                }
-                return false;
-            }
-        });
-        mGridView.setOnItemListener(new TvRecyclerView.OnItemListener() {
+        //tvDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onItemPreSelected(TvRecyclerView parent, View itemView, int position) {
                 itemView.animate().scaleX(1.0f).scaleY(1.0f).setDuration(300).setInterpolator(new BounceInterpolator()).start();
@@ -92,6 +79,16 @@ public class HistoryActivity extends BaseActivity {
             @Override
             public void onItemClick(TvRecyclerView parent, View itemView, int position) {
 
+            }
+        });
+        historyAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                if(!delMode) {
+                    toggleDelMode();
+                    return true;
+                }
+                return false;
             }
         });
         historyAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
