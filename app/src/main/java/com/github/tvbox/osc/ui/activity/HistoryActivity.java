@@ -128,10 +128,17 @@ public class HistoryActivity extends BaseActivity {
                         historyAdapter.remove(position);
                         RoomDataManger.deleteVodRecord(vodInfo.sourceKey, vodInfo);
                     } else {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("id", vodInfo.id);
-                        bundle.putString("sourceKey", vodInfo.sourceKey);
-                        jumpActivity(DetailActivity.class, bundle);
+                        if (ApiConfig.get().getSource(vodInfo.sourceKey) != null) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("id", vodInfo.vodId);
+                            bundle.putString("sourceKey", vodInfo.sourceKey);
+                            jumpActivity(DetailActivity.class, bundle);
+                        } else {
+                            Intent newIntent = new Intent(mContext, SearchActivity.class);
+                            newIntent.putExtra("title", vodInfo.name);
+                            newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(newIntent);
+                        }
                     }
                 }
             }
