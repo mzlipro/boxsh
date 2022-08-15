@@ -113,7 +113,8 @@
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/ts_40" />
 
-                </
+                </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/tvHistory"
                     android:layout_width="wrap_content"
