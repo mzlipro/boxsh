@@ -57,7 +57,7 @@ public class HomeActivity extends BaseActivity {
     protected void init() {
         EventBus.getDefault().register(this);
         ControlManager.get().startServer();
-        new AppUpdate().CheckLatestVersion(this, false, null);
+        //new AppUpdate().CheckLatestVersion(this, false, null);
         //mFrame = findViewById(R.id.mFrame);
         mViewPager = findViewById(R.id.mHomeViewPager);
         String homeStyleClassName = Hawk.get(HawkConfig.HOME_VIEW_STYLE, AbstractHomeFragment.getManagedHomeFragments().get(0).getClassName());
