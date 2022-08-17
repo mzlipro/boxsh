@@ -71,7 +71,7 @@
                         android:text="点播"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -111,7 +111,7 @@
                         android:text="直播"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -153,7 +153,7 @@
                         android:text="历史"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -193,7 +193,7 @@
                         android:text="搜索"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -234,7 +234,7 @@
                         android:text="推送"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -274,7 +274,7 @@
                         android:text="存储"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -315,7 +315,7 @@
                         android:text="推荐"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -356,7 +356,7 @@
                         android:text="收藏"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
@@ -397,7 +397,7 @@
                         android:text="设置"
                         android:textAlignment="gravity"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ts_35" />
+                        android:textSize="@dimen/ts_34" />
 
                 </LinearLayout>
 
