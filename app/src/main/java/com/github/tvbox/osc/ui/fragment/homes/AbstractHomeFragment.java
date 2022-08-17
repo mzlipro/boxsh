@@ -85,7 +85,7 @@ public abstract class AbstractHomeFragment extends BaseLazyFragment {
 
     private void bindQuickApiChange() {
         if(tvName != null) {
-            tvName.setText(getResources().getText(R.string.app_name) + "⇌" + ApiConfig.get().getHomeSourceBean().getName());
+            tvName.setText(getResources().getText(R.string.app_name) + " ⇌ " + ApiConfig.get().getHomeSourceBean().getName());
             tvName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
